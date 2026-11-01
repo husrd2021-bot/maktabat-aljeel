@@ -1,16 +1,16 @@
 'use strict';
-const CACHE='maktabat-aljabal-v30-minimum-order-banners-release';
+const CACHE='maktabat-aljabal-v30a-minimum-order-banners-release';
 const ROOT=new URL('./',self.location.href);
 const SHELL=['./category-all.svg','./category-stationery.svg','./category-books.svg','./category-games.svg','./category-electronics.svg','./category-accessories.svg','./category-beauty.svg','./category-printing.svg','./category-parties.svg','./category-gifts.svg','./category-digital.svg','./category-services.svg','./','./index.html','./style.css','./mountain-library-logo.webp','./app.js','./commerce.js','./product.js','./state.js','./cloud.js','./cloud-config.js','./cloud.css','./account.js','./images/avatar.svg','./digital.js','./media/book-page-1.png','./media/book-page-2.png','./media/book-page-3.png','./media/reading-guide.pdf','./media/lesson-1.webm','./media/lesson-2.webm','./media/lesson-3.webm','./invoice.js','./attachments.js','./vendor/jspdf.umd.min.js','./fonts/Amiri-Regular.ttf','./manifest.webmanifest','./icons/icon-192.png','./icons/icon-512.png','./icons/maskable-512.png','./images/item-1.svg','./images/item-2.svg','./images/item-3.svg','./images/item-4.svg','./images/item-5.svg','./images/item-6.svg','./images/item-7.svg'].map(path=>new URL(path,ROOT).href);
 self.addEventListener('install',event=>event.waitUntil(caches.open(CACHE).then(cache=>cache.addAll(SHELL.map(url=>new Request(url,{cache:'reload'})))).then(()=>self.skipWaiting())));
-self.addEventListener('activate',event=>event.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(key=>key.startsWith('maktabat-aljeel-shell-')&&key!==CACHE).map(key=>caches.delete(key)))).then(()=>self.clients.claim())));
+self.addEventListener('activate',event=>event.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(key=>(key.startsWith('maktabat-aljeel-shell-')||key.startsWith('maktabat-aljabal-'))&&key!==CACHE).map(key=>caches.delete(key)))).then(()=>self.clients.claim())));
 self.addEventListener('fetch',event=>{
   const url=new URL(event.request.url);
   if(event.request.method!=='GET'||url.origin!==ROOT.origin||!url.pathname.startsWith(ROOT.pathname))return;
   if(event.request.mode==='navigate'){
-    event.respondWith(fetch(event.request).catch(()=>caches.match(new URL('./index.html',ROOT).href)));
+    event.respondWith(fetch(event.request).catch(()=>caches.open(CACHE).then(cache=>cache.match(new URL('./index.html',ROOT).href))));
   }else if((SHELL.includes(url.href)||SHELL.includes(url.origin+url.pathname))){
-    event.respondWith(caches.match(event.request,{ignoreSearch:true}).then(cached=>cached?mediaResponse(event.request,cached):fetch(event.request)));
+    event.respondWith(caches.open(CACHE).then(cache=>cache.match(event.request,{ignoreSearch:true})).then(cached=>cached?mediaResponse(event.request,cached):fetch(event.request)));
   }
 });
 
