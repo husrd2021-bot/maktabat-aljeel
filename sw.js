@@ -1,6 +1,6 @@
 'use strict';
 importScripts('./push-worker.js');
-const CACHE='maktabat-aljabal-v34-broadcast-icon-password';
+const CACHE='maktabat-aljabal-v35-companies-cod-language';
 const ROOT=new URL('./',self.location.href);
 const SHELL=['./category-all.svg','./category-stationery.svg','./category-books.svg','./category-games.svg','./category-electronics.svg','./category-accessories.svg','./category-beauty.svg','./category-printing.svg','./category-parties.svg','./category-gifts.svg','./category-digital.svg','./category-services.svg','./','./index.html','./style.css','./mountain-library-logo.webp','./app.js','./commerce.js','./product.js','./state.js','./cloud.js','./cloud-config.js','./cloud.css','./account.js','./images/avatar.svg','./digital.js','./media/book-page-1.png','./media/book-page-2.png','./media/book-page-3.png','./media/reading-guide.pdf','./media/lesson-1.webm','./media/lesson-2.webm','./media/lesson-3.webm','./invoice.js','./attachments.js','./vendor/jspdf.umd.min.js','./fonts/Amiri-Regular.ttf','./manifest.webmanifest','./aljabal-180.png','./aljabal-192.png','./aljabal-512.png','./aljabal-maskable-512.png','./images/item-1.svg','./images/item-2.svg','./images/item-3.svg','./images/item-4.svg','./images/item-5.svg','./images/item-6.svg','./images/item-7.svg'].map(path=>new URL(path,ROOT).href);
 self.addEventListener('install',event=>event.waitUntil(caches.open(CACHE).then(cache=>cache.addAll(SHELL.map(url=>new Request(url,{cache:'reload'})))).then(()=>self.skipWaiting())));
