@@ -59,3 +59,6 @@
 
 /* Product cards stay compact; the full description remains on the product page. */
 .catalog-card .product-description-preview{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;line-clamp:2;overflow:hidden;line-height:1.8;max-height:3.6em;margin-bottom:5px;white-space:normal;overflow-wrap:anywhere}.product-read-more{display:inline-block;color:#125cc0;font-size:12px;font-weight:700;margin-bottom:10px}
+
+/* Keep unavailable products visible without allowing a purchase. */
+.product-inactive{background:#f0f2f5;border-color:#d8dde5}.product-inactive .catalog-thumbnail,.product-inactive .product-main-image{filter:grayscale(.65);opacity:.65}.product-inactive .book-meta{color:#738093}.product-inactive .cover-area{position:relative}.product-unavailable-label{display:block;background:#e2e6ec;color:#536173;padding:6px 10px;border-radius:9px;font-size:11px;font-weight:700}.cover-area>.product-unavailable-label{position:absolute;bottom:8px;inset-inline:8px;z-index:1;text-align:center}.product-inactive button:disabled{cursor:not-allowed;opacity:.5}
