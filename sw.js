@@ -6,7 +6,7 @@ importScripts('./push-worker.js');
 
 
 
-const CACHE='maktabat-aljabal-v40-availability-search';
+const CACHE='maktabat-aljabal-v41-webp-upload';
 
 
 
