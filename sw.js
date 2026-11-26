@@ -6,7 +6,7 @@ importScripts('./push-worker.js');
 
 
 
-const CACHE='maktabat-aljabal-v45-product-photos';
+const CACHE='maktabat-aljabal-v47-catalog-sorting';
 
 
 
